@@ -26,7 +26,8 @@ before_script:
     }" > ../cakephp/app/Config/database.php
 
 script:
-  - ./lib/Cake/Console/cake test OpenGraphCake AllTests --stderr
+  - ./lib/Cake/Console/cake test OpenGraphCake AllTests --stderr --coverage-clover ../cakephp/app/tmp/logs/clover.xml --configuration plugins/OpenGraphCake/phpunit.dist.xml
+  - php plugins/OpenGraphCake/coverage-checker.php ../cakephp/app/tmp/logs/clover.xml 85
 
 notifications:
   email: false
