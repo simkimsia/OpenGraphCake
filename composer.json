@@ -1,0 +1,8 @@
+{
+	"name": "simkimsia/open-graph-cake",
+	"type": "cakephp-plugin",
+	"require": {
+		"composer/installers": "~1.0",
+		"simkimsia/utility_lib": "dev-master"
+	}
+}
