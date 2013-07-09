@@ -11,7 +11,7 @@ env:
 before_script:
   - sh -c "mysql -e 'CREATE DATABASE cakephp_test;'"
   - git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp && git checkout $CAKE_VERSION
-  - git clone git://github.com/simkimsia/UtilityLib plugins
+  - git clone git://github.com/simkimsia/UtilityLib plugins/UtilityLib
   - cp -R ../OpenGraphCake plugins/OpenGraphCake
   - chmod -R 777 ../cakephp/app/tmp
   - echo "<?php
