@@ -1,4 +1,25 @@
 <?php
+// flag on whether we should run the coverage-checker.php
+$weShouldRunCheck = false;
+if (isset($argv[3]) ) {
+	$run			= $argv[3];
+	$weShouldRunCheck = ($run == 'run');
+	if ($weShouldRunCheck && isset($argv[4])) {
+		// check php version
+		$version = phpversion();
+		$version = explode('.', $version);
+
+		$majorMinorVersion = $version[0] . '.' . $version[1];
+		$runInWhichVersion	= $argv[4];
+		$weShouldRunCheck = ($runInWhichVersion == $majorMinorVersion);
+	}
+}
+
+if (!$weShouldRunCheck) {
+	echo "Coverage Checker NOT executed.";
+	exit(0);
+}
+
 // coverage-checker.php
 $inputFile  = $argv[1];
 $percentage = min(100, max(0, (int) $argv[2]));

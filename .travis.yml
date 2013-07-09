@@ -5,8 +5,8 @@ php:
   - 5.4
 
 env:
-  - CAKE_VERSION=master
-  - CAKE_VERSION=2.4
+  - CAKE_VERSION=master RUN_COVERAGE=no
+  - CAKE_VERSION=2.4 RUN_COVERAGE=run
 
 before_script:
   - sh -c "mysql -e 'CREATE DATABASE cakephp_test;'"
@@ -27,7 +27,7 @@ before_script:
 
 script:
   - ./lib/Cake/Console/cake test OpenGraphCake AllTests --stderr --coverage-clover ../cakephp/app/tmp/logs/clover.xml --configuration plugins/OpenGraphCake/phpunit.dist.xml
-  - php plugins/OpenGraphCake/coverage-checker.php ../cakephp/app/tmp/logs/clover.xml 5
+  - php plugins/OpenGraphCake/coverage-checker.php ../cakephp/app/tmp/logs/clover.xml 5 $RUN_COVERAGE 5.4
 
 notifications:
   email: false
