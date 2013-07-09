@@ -1,28 +1,15 @@
 <?php
-// flag on whether we should run the coverage-checker.php
-$weShouldRunCheck = false;
-if (isset($argv[3]) ) {
-	$run			= $argv[3];
-	$weShouldRunCheck = ($run == 'run');
-	if ($weShouldRunCheck && isset($argv[4])) {
-		// check php version
-		$version = phpversion();
-		$version = explode('.', $version);
-
-		$majorMinorVersion = $version[0] . '.' . $version[1];
-		$runInWhichVersion	= $argv[4];
-		$weShouldRunCheck = ($runInWhichVersion == $majorMinorVersion);
-	}
-}
-
-if (!$weShouldRunCheck) {
-	echo "Coverage Checker NOT executed.";
-	exit(0);
-}
 
 // coverage-checker.php
-$inputFile  = $argv[1];
-$percentage = min(100, max(0, (int) $argv[2]));
+if (isset($argv[1]) && isset($argv[2])) {
+	$inputFile  = $argv[1];
+	$percentage = min(100, max(0, (int) $argv[2]));
+}
+
+if (isset($coverageMin) && isset($inputFilePath)) {
+	$inputFile = $inputFilePath;
+	$percentage = min(100, max(0, (int) $coverageMin));
+}
  
 if (!file_exists($inputFile)) {
     throw new InvalidArgumentException('Invalid input file provided');
