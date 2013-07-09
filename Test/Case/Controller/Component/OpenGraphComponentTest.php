@@ -24,9 +24,9 @@ class OpenGraphComponentTest extends CakeTestCase {
         $this->Controller = new TestStoriesController($CakeRequest, $CakeResponse);
         $this->OpenGraphComponent->startup($this->Controller);
     }
-/**
- *
-    public function testAdjust() {
+
+    public function testSetViewVar() {
+        /*
         // Test our adjust method with different parameter settings
         $this->OpenGraphComponent->adjust();
         $this->assertEquals(20, $this->Controller->paginate['limit']);
@@ -36,8 +36,9 @@ class OpenGraphComponentTest extends CakeTestCase {
 
         $this->OpenGraphComponent->adjust('long');
         $this->assertEquals(100, $this->Controller->paginate['limit']);
+        */
     }
-*/
+
     public function tearDown() {
         parent::tearDown();
         // Clean up after we're done

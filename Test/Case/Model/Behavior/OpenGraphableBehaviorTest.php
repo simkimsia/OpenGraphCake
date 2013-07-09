@@ -15,8 +15,7 @@
  * @author Kim Stacks <kim@stacktogether.com>
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  */
-App::uses('Model', 'Model');
-App::uses('AppModel', 'Model');
+App::uses('OpenGraphCakeAppModel', 'OpenGraphCake.Model');
 App::uses('OpenGraphObject', 'OpenGraphCake.Lib');
 /**
  * OpenGraphableBehaviorTest class
@@ -30,7 +29,7 @@ class OpenGraphableBehaviorTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'OpenGraphCake.story'
+		'plugin.OpenGraphCake.story'
 	);
 
 /**
@@ -39,14 +38,14 @@ class OpenGraphableBehaviorTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Story = ClassRegistry::init('Story');
-		$this->Story->Behaviors->load('OpenGraphable', array(
+		$this->Story = ClassRegistry::init('OpenGraphCake.Story');
+		$this->Story->Behaviors->load('OpenGraphCake.OpenGraphable', array(
 			'fields' => array(
 				'type' => 'og_type'
 				)
 			));
 		// retrieve the original data records from fixtures
-		$storyFixture = new storyFixture();
+		$storyFixture = new StoryFixture();
 		$this->stories = $storyFixture->records;
 	}
 
@@ -74,9 +73,9 @@ class OpenGraphableBehaviorTest extends CakeTestCase {
 		$isOGObjInstance = ($openGraphObject instanceof OpenGraphObject);
 		$this->assertTrue($isOGObjInstance);
 		// AND we expect the 4 basic fields of title, image, url, and type to match the same values in fixture
-		$this->assertEqual($openGraphObject->url, $this->records[0]['url']);
-		$this->assertEqual($openGraphObject->image, $this->records[0]['image']);
-		$this->assertEqual($openGraphObject->type, $this->records[0]['type']);
-		$this->assertEqual($openGraphObject->title, $this->records[0]['title']);
+		$this->assertEqual($openGraphObject->url, $this->stories[0]['url']);
+		$this->assertEqual($openGraphObject->image, $this->stories[0]['image']);
+		$this->assertEqual($openGraphObject->type, $this->stories[0]['og_type']);
+		$this->assertEqual($openGraphObject->title, $this->stories[0]['title']);
 	}
 }
