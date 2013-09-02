@@ -20,7 +20,7 @@ if (isset($argv[1]) ) {
 
 if ($weShouldRunCheck) {
 	$consoleCakeCloverParams = '--coverage-clover ../cakephp/app/tmp/logs/clover.xml --configuration plugins/OpenGraphCake/phpunit.dist.xml';
-	exec('./lib/Cake/Console/cake test OpenGraphCake AllTests --stderr '. $consoleCakeCloverParams);
+	exec('./lib/Cake/Console/cake test OpenGraphCake AllTests --stderr ' . $consoleCakeCloverParams);
 	$inputFilePath = '../cakephp/app/tmp/logs/clover.xml';
 	include('coverage-checker.php');
 	//exec('php plugins/OpenGraphCake/coverage-checker.php ../cakephp/app/tmp/logs/clover.xml '.$coverageMin.' '.$run.' ' . $runInWhichVersion);
