@@ -1,0 +1,48 @@
+OpenGraphCake uses the following Helpers:
+
+* OpenGraph Helper
+
+## OpenGraph Helper
+The OpenGraph Helper allows you to generate the OpenGraph tags at the View layer easily.
+
+### How to use OpenGraph
+First start off by linking the helper in your Controller:
+
+	public $helpers = array(
+		'OpenGraphCake.OpenGraph'
+	);
+
+OpenGraph Helper has the following public methods:
+
+* meta
+* metaMany
+
+
+#### meta($singleOGTagArray, $includeNameSpace = true)
+
+Generates a single meta HTML element for Open Graph use. The element is in string format.
+
+An example on how to use this:
+
+	echo $this->OpenGraph->meta(array('property'=>'og:site_name', 'content'=>'Amazon'));
+
+will produce:
+
+	<meta property="og:site_name" content="Amazon.com" xmlns:og="http://opengraphprotocol.org/schema/">
+
+#### metaMany($multipleOGTagArray)
+
+Similar to the meta method. Except this takes in an array of OpenGraph elements. Also returns the elements as a single string.
+
+An example on how to use this:
+
+	$multipleTags = array(
+		array('property'=>'og:url', 'content'=>'http://www.amazon.com/dp/0671646788/ref=tsm_1_fb_lk" xmlns:og="http://opengraphprotocol.org/schema/'),
+		array('property'=>'og:title', 'content'=>'The Magic of Thinking Big'),
+	);
+	echo $this->OpenGraph->metaMany($multipleTags);
+
+will produce:
+
+	<meta property="og:url" content="http://www.amazon.com/dp/0671646788/ref=tsm_1_fb_lk" xmlns:og="http://opengraphprotocol.org/schema/">
+	<meta property="og:title" content="The Magic of Thinking Big" xmlns:og="http://opengraphprotocol.org/schema/">

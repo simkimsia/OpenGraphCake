@@ -1,0 +1,37 @@
+OpenGraphCake uses the following Components:
+
+* OpenGraph Component
+
+## OpenGraph
+
+The OpenGraph Component will do the following in sequence:
+
+* takes in an OpenGraphObject
+* generates an array of its properties and values
+* takes that array and sets it to a View Variable which, by default, is called `$openGraphTags`
+
+### How to use OpenGraph Component
+First start off by linking the Component in your Controller:
+
+	public $components = array(
+		'OpenGraphCake.OpenGraph'
+	);
+
+Let us assume you have a ProductsController and a Product model.
+
+Inside your ProductsController action, you would need to do the following:
+
+	$openGraphObj = $this->Product->getOpenGraphObject($productData);
+
+	$this->OpenGraph->setViewVar($openGraphObj);
+
+And then at your View, you write:
+
+	echo $this->OpenGraph->metaMany($openGraphTags);
+
+These two lines assume that:
+
+* Product has attached and enabled the OpenGraphable Behavior
+* ProductsController has added the OpenGraph Component and OpenGraph Helper
+
+More details go to [[detailed usage]] to find out.

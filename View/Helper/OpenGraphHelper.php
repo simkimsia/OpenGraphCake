@@ -21,7 +21,7 @@ class OpenGraphHelper extends AppHelper {
 	public $helpers = array('Html');
 /**
  *
- * generates a single meta HTML element for Open Graph
+ * Generates a single meta HTML element for Open Graph use. The element is in string format.
  *
  * @param $singleOGTagArray Array. Expect property and content as keys and nothing else.
  * @return String. The HTML element in string form E.g. <meta property="og:site_name" content="Amazon.com" xmlns:og="http://opengraphprotocol.org/schema/">

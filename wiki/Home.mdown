@@ -1,0 +1,29 @@
+OpenGraphCake is a plugin for CakePHP that can {state the purpose in 1 paragraph}
+
+### Features
+
+* Feature 1.
+* Feature 2.
+* Feature 3.
+
+### Installation
+
+Composer
+Clone
+Download
+
+### Quick start
+Quick start ideally within 3 steps. Quick start should observe convention over configuration principle.
+
+ 1. Step 1
+ 2. Step 2
+ 3. Step 3
+
+### In depth usage
+
+* [[Configuration]] Configuring OpenGraphCake.
+* [[Behavior Usage]] Feel free to delete this or add extra wiki pages.
+* [[Component Usage]] Feel free to delete this or add extra wiki pages.
+* [[Helper Usage]] Feel free to delete this or add extra wiki pages.
+* [[Shell Usage]] Feel free to delete this or add extra wiki pages.
+* [[Troubleshooting]] Common WTF, and how you might be able to fix it.

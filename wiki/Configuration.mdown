@@ -1,0 +1,18 @@
+OpenGraphCake can be configured with an ini file. 
+
+### Where to place the Config file
+The config file should be put in app/Config/OpenGraphCake/config.ini. 
+
+### Purpose of Config file
+The config file is used for {purpo}
+
+### Sample Config file
+
+A sample config file would look like this:
+	
+
+### Definitions
+
+* `term1` Defines term1.
+* `term2` Defines term2.
+* `term3` Defines term3.

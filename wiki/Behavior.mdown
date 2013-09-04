@@ -1,0 +1,104 @@
+OpenGraphCake uses the following Behaviors:
+
+* OpenGraphable Behavior
+
+## OpenGraphable
+
+The OpenGraphable Behavior allows you to associate the database column name with the relevant Open Graph tag name and automatically help you to prepare the data as a single entity called OpenGraphObject.
+
+### How to use OpenGraphable
+First start off by linking the Behavior in your Model:
+
+	public $actsAs = array(
+		'OpenGraphCake.OpenGraphable'
+	);
+
+Currently, the Behavior works for the following four Open Graph tag names
+
+* title
+* type
+* title
+* url
+
+By default, the OpenGraphable Behavior assumes that the values for each tag name will come from the database columns **bearing the same name**.
+
+Meaning to say, OpenGraphable will attempt to look for the `title` value inside the `title` field name of the attached Model and so on.
+
+You can also associate the tag names to derive their values from different fields of the same Model.
+
+	public $actsAs = array(
+		'OpenGraphCake.OpenGraphable' => array(
+			'fields' => array(
+				'url' => 'full_product_url',
+				'type' => 'og_type',
+			)
+		)
+	);
+
+This way of setting the tag names to different fields will also work with `$virtualFields`.
+
+	public $actsAs = array(
+		'OpenGraphCake.OpenGraphable' => array(
+			'fields' => array(
+				'url' => 'full_product_url',
+				'type' => 'og_type',
+			)
+		)
+	);
+
+	public $virtualFields = array(
+		'og_type' => "'book'"
+	);
+
+OpenGraphable Behavior has the following public methods:
+
+* getOpenGraphObject
+
+
+#### getOpenGraphObject(Model $model, $data = array(), $type = OpenGraphObject::BASE)
+
+Takes in data array and generates an object of the class OpenGraphObject. See [[OpenGraphObject]] for details. 
+
+An example on how to use this at the Model layer:
+
+	$this->getOpenGraphObject($productData);
+
+An example on how to use this at the Controller layer:
+
+	$this->Product->getOpenGraphObject($productData);
+
+The `$productData` stated in the example must be in one of the two following formats:
+
+Format 1:
+	array(
+		'Product' => array(
+			'field1' => 'value1',
+			'field2' => 'value2',
+		)
+	)
+
+OR
+
+Format 2:
+	array(
+		'field1' => 'value1',
+		'field2' => 'value2',
+	)
+
+
+This will produce the OpenGraphObject you want.
+
+### How to use OpenGraphable with OpenGraph Component
+
+Let us assume you have a ProductsController and a Product model.
+
+Inside your ProductsController action, you would need to do the following:
+
+	$openGraphObj = $this->Product->getOpenGraphObject($productData);
+
+	$this->OpenGraph->setViewVar($openGraphObj);
+
+These two lines assume that:
+
+* Product has attached and enabled the OpenGraphable Behavior
+* ProductsController has added the OpenGraph Component and OpenGraph Helper
