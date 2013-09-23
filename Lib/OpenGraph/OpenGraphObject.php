@@ -21,6 +21,8 @@ class OpenGraphObject {
 	public $url = '';
 	public $image = '';
 
+	public $description = '';
+
 	protected $emptyFields = array();
 
 	CONST BASE = 'base';
@@ -42,6 +44,9 @@ class OpenGraphObject {
 		if (isset($array['image'])) {
 			$this->image = ($array['image']);
 		}
+		if (isset($array['description'])) {
+			$this->description = ($array['description']);
+		}
 	}
 
 /**
@@ -56,7 +61,9 @@ class OpenGraphObject {
 		foreach($props as $property) {
 			$name = $property->getName();
 			$value = $reflect->getProperty($name)->getValue($this);
-			$ogProperties[$name] = $value;
+			if (!empty($value)) {
+				$ogProperties[$name] = $value;
+			}
 		}
 		return $ogProperties;
 	}

@@ -92,26 +92,21 @@ class OpenGraphComponent extends Component {
 			$metadata = $metadata->getProperties();
 		}
 
-		$requiredMeta = array('title', 'type', 'image', 'url');
-		$missingKeys = array();
-		$result = array();
-		if (ArrayLib::checkIfKeysExist($metadata, $requiredMeta, $missingKeys)) {
-			$legitMetaData = ArrayLib::extractIfKeysExist($metadata, $requiredMeta);
-			$ogMetaData = array('og' => $legitMetaData);
-			$flattened = Hash::flatten($ogMetaData);
-			foreach($flattened as $key=>$content) {
-				$property = str_replace(".", ":", $key);
-				$singleTag = $this->_buildSingleTagArray($property, $content);
-				$result[] = $singleTag;
-			}
-
-			if (!empty($options['viewVarName']) && is_string($options['viewVarName'])) {
-				$viewVarName = $options['viewVarName'];
-				$this->controller->set($viewVarName, $result);
-			}
-		} else {
-			$this->controller->log($missingKeys);
+		$ogMetaData = array('og' => $metadata);
+		$flattened = Hash::flatten($ogMetaData);
+		foreach($flattened as $key=>$content) {
+			$property = str_replace(".", ":", $key);
+			$singleTag = $this->_buildSingleTagArray($property, $content);
+			$result[] = $singleTag;
 		}
+
+		if (!empty($options['viewVarName']) && is_string($options['viewVarName'])) {
+			$viewVarName = $options['viewVarName'];
+			$this->controller->set($viewVarName, $result);
+		}
+
+		// $this->controller->log($missingKeys);
+
 		return $result;
 	}
 }
