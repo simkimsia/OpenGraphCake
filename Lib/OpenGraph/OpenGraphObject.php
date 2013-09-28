@@ -16,12 +16,13 @@
  */
 class OpenGraphObject {
 
-	public $type = '';
-	public $title = '';
-	public $url = '';
-	public $image = '';
+	public $type	= '';
+	public $title	= '';
+	public $url		= '';
+	public $image	= '';
 
 	public $description = '';
+	public $release_date = '';
 
 	protected $emptyFields = array();
 
@@ -46,6 +47,9 @@ class OpenGraphObject {
 		}
 		if (isset($array['description'])) {
 			$this->description = ($array['description']);
+		}
+		if (isset($array['release_date'])) {
+			$this->release_date = ($array['release_date']);
 		}
 	}
 

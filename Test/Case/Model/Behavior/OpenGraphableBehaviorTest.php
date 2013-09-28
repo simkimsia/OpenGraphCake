@@ -41,9 +41,11 @@ class OpenGraphableBehaviorTest extends CakeTestCase {
 		$this->Story = ClassRegistry::init('OpenGraphCake.Story');
 		$this->Story->Behaviors->load('OpenGraphCake.OpenGraphable', array(
 			'fields' => array(
-				'type' => 'og_type'
-				)
-			));
+				'type' => 'og_type',
+				'description',
+				'release_date' => 'published'
+			)
+		));
 		// retrieve the original data records from fixtures
 		$storyFixture = new StoryFixture();
 		$this->stories = $storyFixture->records;
@@ -78,5 +80,6 @@ class OpenGraphableBehaviorTest extends CakeTestCase {
 		$this->assertEqual($openGraphObject->type, $this->stories[0]['og_type']);
 		$this->assertEqual($openGraphObject->title, $this->stories[0]['title']);
 		$this->assertEqual($openGraphObject->description, $this->stories[0]['description']);
+		$this->assertEqual($openGraphObject->release_date, $this->stories[0]['published']);
 	}
 }

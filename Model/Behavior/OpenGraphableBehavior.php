@@ -55,6 +55,12 @@ class OpenGraphableBehavior extends ModelBehavior {
 			)
 		);
 
+		foreach($settings['fields'] as $property => $databaseFieldName) {
+			if (!is_string($property)) {
+				unset($settings['fields'][$property]);
+				$settings['fields'][$databaseFieldName] = $databaseFieldName;
+			}
+		}
 		$this->settings = Hash::merge($defaultSettings, $settings);
 		return true;
 	}
@@ -112,7 +118,7 @@ class OpenGraphableBehavior extends ModelBehavior {
 		$databaseFieldName	= $this->settings['fields'][$property];
 		// find out the value for this property
 		if (isset($cleanedData[$databaseFieldName])) {
-			$value			= $cleanedData[$databaseFieldName];
+			$value					= $cleanedData[$databaseFieldName];
 			// now we update the $formatted array
 			$formatted[$property]	= $value;
 			return $value;
