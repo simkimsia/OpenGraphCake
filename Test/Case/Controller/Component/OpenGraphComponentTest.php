@@ -17,11 +17,11 @@ class OpenGraphComponentTest extends CakeTestCase {
     public function setUp() {
         parent::setUp();
         // Setup our component and fake test controller
-        $Collection = new ComponentCollection();
+        $Collection               = new ComponentCollection();
         $this->OpenGraphComponent = new OpenGraphComponent($Collection);
-        $CakeRequest = new CakeRequest();
-        $CakeResponse = new CakeResponse();
-        $this->Controller = new TestStoriesController($CakeRequest, $CakeResponse);
+        $CakeRequest              = new CakeRequest();
+        $CakeResponse             = new CakeResponse();
+        $this->Controller         = new TestStoriesController($CakeRequest, $CakeResponse);
         $this->OpenGraphComponent->startup($this->Controller);
     }
 

@@ -77,5 +77,6 @@ class OpenGraphableBehaviorTest extends CakeTestCase {
 		$this->assertEqual($openGraphObject->image, $this->stories[0]['image']);
 		$this->assertEqual($openGraphObject->type, $this->stories[0]['og_type']);
 		$this->assertEqual($openGraphObject->title, $this->stories[0]['title']);
+		$this->assertEqual($openGraphObject->description, $this->stories[0]['description']);
 	}
 }
