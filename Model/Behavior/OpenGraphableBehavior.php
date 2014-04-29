@@ -18,6 +18,7 @@
 App::uses('Hash', 'Utility');
 App::uses('ModelBehavior', 'Model');
 App::uses('OpenGraphObject', 'OpenGraphCake.Lib/OpenGraph');
+App::uses('TwitterCard', 'OpenGraphCake.Lib/Twitter');
 class OpenGraphableBehavior extends ModelBehavior {
 
 /**
@@ -127,5 +128,49 @@ class OpenGraphableBehavior extends ModelBehavior {
 			return $value;
 		}
 		return false;
+	}
+
+/**
+ *
+ * Format a given data array to match fields for common OpenGraph fields
+ * @param array $data.
+ * @param array $type Default OpenGraph::BASE
+ * @return OpenGraph object Either an instance of OpenGraphObject or one of its subclasses.
+ */
+	public function getTwitterCard(Model $model, $data = array(), $type = TwitterCard::BASE) {
+		$suppliedData = array();
+		if (isset($data[$model->alias])) {
+			$suppliedData = $data[$model->alias];
+		} else {
+			$suppliedData = $data;
+		}
+		$formattedData = array();
+		foreach ($this->settings['fields'] as $property => $databaseFieldName) {
+			$return = $this->_formatOneOGProperty($suppliedData, $property, $formattedData);
+		}
+
+		$card = $this->_createTwitterCardByType($type);
+
+		$card->convertArrayToVars($formattedData);
+
+		if (!$card->validate()) {
+			// throw missing data exception??
+		}
+		return $card;
+	}
+
+	protected function _createTwitterCardByType($type = TwitterCard::BASE) {
+		$return = null;
+		switch($type) {
+			case TwitterCard::SUMMARY_LARGE_IMAGE :
+				$return = new TwitterSummaryLargeImage();
+			case TwitterCard::PRODUCT :
+				$return = new TwitterProduct();
+			case TwitterCard::BASE :
+			default:
+				$return = new TwitterCard();
+			break;
+		}
+		return $return;
 	}
 }

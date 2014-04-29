@@ -28,7 +28,7 @@ class OpenGraphHelper extends AppHelper {
  * @param $singleOGTagArray Array. Expect property and content as keys and nothing else.
  * @return String. The HTML element in string form E.g. <meta property="og:site_name" content="Amazon.com" xmlns:og="http://opengraphprotocol.org/schema/">
  */
-	public function meta($singleOGTagArray, $includeNameSpace = true) {
+	public function metaOG($singleOGTagArray, $includeNameSpace = true) {
 		$missingKeys = array();
 		$requiredFields = array('property', 'content');
 		if (ArrayLib::checkIfKeysExist($singleOGTagArray, $requiredFields, $missingKeys)) {
@@ -61,12 +61,34 @@ class OpenGraphHelper extends AppHelper {
  * @param $multipleOGTagArray Array. Array of subarrays where each subarray is expected to have property and content as keys and nothing else.
  * @return String. The HTML element in string form
  */
-	public function metaMany($multipleOGTagArray) {
+	public function metaMany($multipleOGTagArray, $type = 'og') {
 		$result = '';
 		foreach ($multipleOGTagArray as $og) {
-			$result .= $this->meta($og) . "\n";
+			if ($type == 'og') {
+				$result .= $this->metaOG($og) . "\n";
+			}
+			if ($type == 'twitter') {
+				$result .= $this->meta($og) . "\n";
+			}
 		}
 		return $result;
+	}
+
+/**
+ *
+ * Generates a single meta HTML element for Twitter use. The element is in string format.
+ *
+ * @param $singleOGTagArray Array. Expect property and content as keys and nothing else.
+ * @return String. The HTML element in string form E.g. <meta property="og:site_name" content="Amazon.com" xmlns:og="http://opengraphprotocol.org/schema/">
+ */
+	public function meta($singleOGTagArray) {
+		$missingKeys = array();
+		$requiredFields = array('name', 'content');
+		if (ArrayLib::checkIfKeysExist($singleOGTagArray, $requiredFields, $missingKeys)) {
+			$extractedData = ArrayLib::extractIfKeysExist($singleOGTagArray, $requiredFields);
+			return $this->Html->meta($extractedData);
+		}
+		return '';
 	}
 
 }
