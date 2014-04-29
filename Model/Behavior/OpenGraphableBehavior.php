@@ -55,8 +55,9 @@ class OpenGraphableBehavior extends ModelBehavior {
 				'type'	=> 'type',
 				'image'	=> 'image',
 				'url'	=> 'url',
-				'image:secure_url' => 'image',
-				'image:src' => 'image',
+				'image:secure_url' => 'image', // facebook
+				'image:src' => 'image', // twitter
+				'site' => 'site', // twitter
 			)
 		);
 

@@ -26,9 +26,12 @@ class TwitterSummaryLargeImage extends TwitterCard {
 
 	public $description = '';
 
+	public $site = '';
+
 	public $allowedFields = array(
 		'card' => 'summary_large_image', 'title' => '', 'image:src' => '',
 		'description' => '',
+		'site' => ''
 	);
 
 	protected $_emptyFields = array();

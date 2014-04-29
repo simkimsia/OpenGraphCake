@@ -25,9 +25,12 @@ class TwitterCard {
 
 	public $description = '';
 
+	public $site = '';
+
 	public $allowedFields = array(
 		'card' => 'summary', 'title' => '',
 		'image' => '', 'description' => '',
+		'site' => ''
 	);
 
 	protected $_emptyFields = array();
