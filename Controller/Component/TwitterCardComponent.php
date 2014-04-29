@@ -86,7 +86,7 @@ class TwitterCardComponent extends Component {
  * by Html CakeHelper for generating the meta tags. Find out more at https://dev.twitter.com/docs/cards/types/product-card
  *
  * @param $metadata mixed Expect either OpenGraphObject instance or data array of fields stating the expected metadata
- * @param $options Array. Optional. Default is 'twitterTags' as value and viewVarName as key.
+ * @param $options Array. Optional. Default is 'twitterMarkup' as value and viewVarName as key.
  * This will be the view var set by the controller. if the value is false, then we turn off the set.
  * @return Array Each value will be an array. The subarrays will have such key-value pairs:
  * a) property => og:title
@@ -94,7 +94,7 @@ class TwitterCardComponent extends Component {
  */
 	public function setViewVar($metadata = array(), $options = array()) {
 		$defaultOptions = array(
-			'viewVarName' => 'twitterTags',
+			'viewVarName' => 'twitterMarkup',
 			'globalTwitterAppId' => false,
 		);
 		$options = array_merge($defaultOptions, $options);

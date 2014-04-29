@@ -18,7 +18,7 @@ App::uses('Inflector', 'Utility');
 App::uses('TwitterCard', 'OpenGraphCake.Lib/Twitter');
 class TwitterProduct extends TwitterCard {
 
-	public $card	= '';
+	public $card	= 'product';
 
 	public $creator	= '';
 
@@ -39,7 +39,7 @@ class TwitterProduct extends TwitterCard {
 	public $label2 = '';
 
 	public $allowedFields = array(
-		'card' => '', 'title' => '', 'site' => '',
+		'card' => 'product', 'title' => '', 'site' => '',
 		'image' => '', 'description' => '',
 		'data1' => '', 'label1' => '',
 		'data2' => '', 'label2' => '',

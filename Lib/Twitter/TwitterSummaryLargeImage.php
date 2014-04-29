@@ -16,9 +16,9 @@
  */
 App::uses('Inflector', 'Utility');
 App::uses('TwitterCard', 'OpenGraphCake.Lib/Twitter');
-class TwitterSummaryLargeImage extends TwitterCard{
+class TwitterSummaryLargeImage extends TwitterCard {
 
-	public $card	= '';
+	public $card	= 'summary_large_image';
 
 	public $title	= '';
 
@@ -27,7 +27,7 @@ class TwitterSummaryLargeImage extends TwitterCard{
 	public $description = '';
 
 	public $allowedFields = array(
-		'card' => '', 'title' => '', 'image:src' => '',
+		'card' => 'summary_large_image', 'title' => '', 'image:src' => '',
 		'description' => '',
 	);
 

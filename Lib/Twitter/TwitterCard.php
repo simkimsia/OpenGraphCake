@@ -15,9 +15,9 @@
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 App::uses('Inflector', 'Utility');
-class TwitterSummaryLargeImage {
+class TwitterCard {
 
-	public $card	= '';
+	public $card	= 'summary';
 
 	public $title	= '';
 
@@ -26,7 +26,7 @@ class TwitterSummaryLargeImage {
 	public $description = '';
 
 	public $allowedFields = array(
-		'card' => '', 'title' => '',
+		'card' => 'summary', 'title' => '',
 		'image' => '', 'description' => '',
 	);
 

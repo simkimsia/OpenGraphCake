@@ -19,6 +19,8 @@ App::uses('Hash', 'Utility');
 App::uses('ModelBehavior', 'Model');
 App::uses('OpenGraphObject', 'OpenGraphCake.Lib/OpenGraph');
 App::uses('TwitterCard', 'OpenGraphCake.Lib/Twitter');
+App::uses('TwitterProduct', 'OpenGraphCake.Lib/Twitter');
+App::uses('TwitterSummaryLargeImage', 'OpenGraphCake.Lib/Twitter');
 class OpenGraphableBehavior extends ModelBehavior {
 
 /**
@@ -54,6 +56,7 @@ class OpenGraphableBehavior extends ModelBehavior {
 				'image'	=> 'image',
 				'url'	=> 'url',
 				'image:secure_url' => 'image',
+				'image:src' => 'image',
 			)
 		);
 
@@ -150,6 +153,7 @@ class OpenGraphableBehavior extends ModelBehavior {
 		}
 
 		$card = $this->_createTwitterCardByType($type);
+		$model->log($card);
 
 		$card->convertArrayToVars($formattedData);
 
@@ -164,12 +168,14 @@ class OpenGraphableBehavior extends ModelBehavior {
 		switch($type) {
 			case TwitterCard::SUMMARY_LARGE_IMAGE :
 				$return = new TwitterSummaryLargeImage();
+				break;
 			case TwitterCard::PRODUCT :
 				$return = new TwitterProduct();
+				break;
 			case TwitterCard::BASE :
 			default:
 				$return = new TwitterCard();
-			break;
+				break;
 		}
 		return $return;
 	}
