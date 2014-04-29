@@ -77,6 +77,7 @@ class OpenGraphableBehaviorTest extends CakeTestCase {
 		// AND we expect the 4 basic fields of title, image, url, and type to match the same values in fixture
 		$this->assertEqual($openGraphObject->url, $this->stories[0]['url']);
 		$this->assertEqual($openGraphObject->image, $this->stories[0]['image']);
+		$this->assertEqual($openGraphObject->image_secure_url, $this->stories[0]['image']);
 		$this->assertEqual($openGraphObject->type, $this->stories[0]['og_type']);
 		$this->assertEqual($openGraphObject->title, $this->stories[0]['title']);
 		$this->assertEqual($openGraphObject->description, $this->stories[0]['description']);

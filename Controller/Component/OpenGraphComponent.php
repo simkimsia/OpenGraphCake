@@ -50,7 +50,7 @@ class OpenGraphComponent extends Component {
 
 /**
  *
- * @param controller object $controller 
+ * @param controller object $controller
  */
 	public function startup(Controller $controller) {
 		$this->controller = $controller;
@@ -61,7 +61,7 @@ class OpenGraphComponent extends Component {
  by Html CakeHelper for generating a single meta tag. An array with the 2 keyvalue pairs.
  The fields are property and content.
  * @param $property String
- * @param $content String 
+ * @param $content String
  * @return Array An array with 2 key-value pairs like these:
  a) property => og:title
  b) content => 'The Rock'
@@ -75,7 +75,7 @@ class OpenGraphComponent extends Component {
  * Setup basic metadata for Open Graph tags. Return array that will be used
  by Html CakeHelper for generating the meta tags. Find out more at http://ogp.me/#metadata
  *
- * @param $metadata mixed Expect either OpenGraphObject instance or data array of fields stating the expected metadata 
+ * @param $metadata mixed Expect either OpenGraphObject instance or data array of fields stating the expected metadata
  * @param $options Array. Optional. Default is 'openGraphTags' as value and viewVarName as key.
   This will be the view var set by the controller. if the value is false, then we turn off the set.
  * @return Array Each value will be an array. The subarrays will have such key-value pairs:

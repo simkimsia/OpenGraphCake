@@ -20,9 +20,16 @@ class OpenGraphObject {
 	public $title	= '';
 	public $url		= '';
 	public $image	= '';
+	public $image_secure_url	= '';
 
 	public $description = '';
 	public $release_date = '';
+
+	public $allowedFields = array(
+		'type' => '', 'title' => '', 'url' => '',
+		'image' => '', 'image:secure_url' => '', 'description' => '',
+		'release_date' => '',
+	);
 
 	protected $emptyFields = array();
 
@@ -33,23 +40,13 @@ class OpenGraphObject {
 	}
 
 	public function convertArrayToVars($array = array()) {
-		if (isset($array['type'])) {
-			$this->type = $array['type'];
-		}
-		if (isset($array['title'])) {
-			$this->title = ($array['title']);
-		}
-		if (isset($array['url'])) {
-			$this->url = $array['url'];
-		}
-		if (isset($array['image'])) {
-			$this->image = ($array['image']);
-		}
-		if (isset($array['description'])) {
-			$this->description = ($array['description']);
-		}
-		if (isset($array['release_date'])) {
-			$this->release_date = ($array['release_date']);
+		$allowedKeys = array_keys($this->allowedFields);
+		foreach($allowedKeys as $key) {
+			if (isset($array[$key])) {
+				$this->allowedFields[$key] = $array[$key];
+				$propName = str_replace(":", "_", $key);
+				$this->$propName = $array[$key];
+			}
 		}
 	}
 
@@ -60,13 +57,20 @@ class OpenGraphObject {
  */
 	public function getProperties() {
 		$reflect = new ReflectionClass($this);
-		$props = $reflect->getProperties(ReflectionProperty::IS_PUBLIC); 
+		$props = $reflect->getProperties(ReflectionProperty::IS_PUBLIC);
 		$ogProperties = array();
+		/*
 		foreach($props as $property) {
 			$name = $property->getName();
 			$value = $reflect->getProperty($name)->getValue($this);
 			if (!empty($value)) {
 				$ogProperties[$name] = $value;
+			}
+		}
+		*/
+		foreach($this->allowedFields as $key => $value) {
+			if (!empty($value)) {
+				$ogProperties[$key] = $value;
 			}
 		}
 		return $ogProperties;

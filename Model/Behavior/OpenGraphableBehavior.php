@@ -48,10 +48,11 @@ class OpenGraphableBehavior extends ModelBehavior {
 		$this->model = $Model;
 		$defaultSettings = array(
 			'fields' => array(
-				'title'	=> 'title', 
-				'type'	=> 'type', 
-				'image'	=> 'image', 
-				'url'	=> 'url'
+				'title'	=> 'title',
+				'type'	=> 'type',
+				'image'	=> 'image',
+				'url'	=> 'url',
+				'image:secure_url' => 'image',
 			)
 		);
 
@@ -68,7 +69,7 @@ class OpenGraphableBehavior extends ModelBehavior {
 /**
  *
  * Format a given data array to match fields for common OpenGraph fields
- * @param array $data. 
+ * @param array $data.
  * @param array $type Default OpenGraph::BASE
  * @return OpenGraph object Either an instance of OpenGraphObject or one of its subclasses.
  */
@@ -81,10 +82,10 @@ class OpenGraphableBehavior extends ModelBehavior {
 		}
 		$formattedData = array();
 		foreach($this->settings['fields'] as $property => $databaseFieldName) {
-			$this->_formatOneOGProperty($suppliedData, $property, $formattedData);
+			$return = $this->_formatOneOGProperty($suppliedData, $property, $formattedData);
 		}
 
-		$ogObject = $this->_createOGObjectByType($type); 
+		$ogObject = $this->_createOGObjectByType($type);
 
 		$ogObject->convertArrayToVars($formattedData);
 
