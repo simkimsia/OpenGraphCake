@@ -7,11 +7,14 @@ App::uses('OpenGraphComponent', 'OpenGraphCake.Controller/Component');
 
 // A fake controller to test against
 class TestStoriesController extends Controller {
+
 	public $paginate = null;
 }
 
 class OpenGraphComponentTest extends CakeTestCase {
+
 	public $OpenGraphComponent = null;
+
 	public $Controller = null;
 
 	public function setUp() {

@@ -17,8 +17,10 @@ App::uses('ArrayLib', 'UtilityLib.Lib');
 App::uses('AppHelper', 'View/Helper');
 
 class OpenGraphHelper extends AppHelper {
+
 	// use CakePHP Native HtmlHelper
 	public $helpers = array('Html');
+
 /**
  *
  * Generates a single meta HTML element for Open Graph use. The element is in string format.
@@ -61,7 +63,7 @@ class OpenGraphHelper extends AppHelper {
  */
 	public function metaMany($multipleOGTagArray) {
 		$result = '';
-		foreach($multipleOGTagArray as $og) {
+		foreach ($multipleOGTagArray as $og) {
 			$result .= $this->meta($og) . "\n";
 		}
 		return $result;

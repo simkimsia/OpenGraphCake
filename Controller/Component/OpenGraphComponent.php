@@ -38,6 +38,14 @@ class OpenGraphComponent extends Component {
 	public $controller = null;
 
 /**
+ * global fb app id
+ *
+ * @access public
+ * @var int
+ */
+	public $globalFbAppId = null;
+
+/**
  * Initialize function
  *
  *
@@ -85,10 +93,11 @@ class OpenGraphComponent extends Component {
 	public function setViewVar($metadata = array(), $options = array()) {
 		$defaultOptions = array(
 			'viewVarName' => 'openGraphTags',
+			'globalFbAppId' => false,
 		);
 		$options = array_merge($defaultOptions, $options);
 
-		if($metadata instanceof OpenGraphObject) {
+		if ($metadata instanceof OpenGraphObject) {
 			$metadata = $metadata->getProperties();
 		}
 
@@ -105,8 +114,14 @@ class OpenGraphComponent extends Component {
 			$this->controller->set($viewVarName, $result);
 		}
 
+		if (!empty($options['globalFbAppId']) && !empty($this->globalFbAppId)) {
+			$singleTag = $this->_buildSingleTagArray('fb:app_id', $this->globalFbAppId);
+			$this->controller->set($options['viewVarName'], $singleTag);
+		}
+
 		// $this->controller->log($missingKeys);
 
 		return $result;
 	}
+
 }

@@ -96,12 +96,14 @@ class OpenGraphableBehavior extends ModelBehavior {
 	}
 
 	protected function _createOGObjectByType($type = OpenGraphObject::BASE) {
+		$return = null;
 		switch($type) {
 			case OpenGraphObject::BASE :
 			default:
-				return new OpenGraphObject();
+				$return = new OpenGraphObject();
 			break;
 		}
+		return $return;
 	}
 
 /**
