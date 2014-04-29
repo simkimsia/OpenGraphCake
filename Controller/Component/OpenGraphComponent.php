@@ -58,14 +58,14 @@ class OpenGraphComponent extends Component {
 
 /**
  * Return array that will be used
- by Html CakeHelper for generating a single meta tag. An array with the 2 keyvalue pairs.
- The fields are property and content.
+ * by Html CakeHelper for generating a single meta tag. An array with the 2 keyvalue pairs.
+ * The fields are property and content.
  * @param $property String
  * @param $content String
  * @return Array An array with 2 key-value pairs like these:
- a) property => og:title
- b) content => 'The Rock'
-*/
+ * a) property => og:title
+ * b) content => 'The Rock'
+ */
 	protected function _buildSingleTagArray($property, $content) {
 		return compact('property', 'content');
 	}
@@ -73,14 +73,14 @@ class OpenGraphComponent extends Component {
 /**
  *
  * Setup basic metadata for Open Graph tags. Return array that will be used
- by Html CakeHelper for generating the meta tags. Find out more at http://ogp.me/#metadata
+ * by Html CakeHelper for generating the meta tags. Find out more at http://ogp.me/#metadata
  *
  * @param $metadata mixed Expect either OpenGraphObject instance or data array of fields stating the expected metadata
  * @param $options Array. Optional. Default is 'openGraphTags' as value and viewVarName as key.
-  This will be the view var set by the controller. if the value is false, then we turn off the set.
+ * This will be the view var set by the controller. if the value is false, then we turn off the set.
  * @return Array Each value will be an array. The subarrays will have such key-value pairs:
- a) property => og:title
- b) content => 'The Rock'
+ * a) property => og:title
+ * b) content => 'The Rock'
  */
 	public function setViewVar($metadata = array(), $options = array()) {
 		$defaultOptions = array(
@@ -94,7 +94,7 @@ class OpenGraphComponent extends Component {
 
 		$ogMetaData = array('og' => $metadata);
 		$flattened = Hash::flatten($ogMetaData);
-		foreach($flattened as $key=>$content) {
+		foreach ($flattened as $key => $content) {
 			$property = str_replace(".", ":", $key);
 			$singleTag = $this->_buildSingleTagArray($property, $content);
 			$result[] = $singleTag;

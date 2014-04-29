@@ -14,16 +14,22 @@
  * @author Kim Stacks <kim@stacktogether.com>
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  */
+App::uses('Inflector', 'Utility');
 class OpenGraphObject {
 
 	public $type	= '';
+
 	public $title	= '';
+
 	public $url		= '';
+
 	public $image	= '';
-	public $image_secure_url	= '';
+
+	public $imageSecureUrl	= '';
 
 	public $description = '';
-	public $release_date = '';
+
+	public $releaseDate = '';
 
 	public $allowedFields = array(
 		'type' => '', 'title' => '', 'url' => '',
@@ -31,9 +37,9 @@ class OpenGraphObject {
 		'release_date' => '',
 	);
 
-	protected $emptyFields = array();
+	protected $_emptyFields = array();
 
-	CONST BASE = 'base';
+	const BASE = 'base';
 
 	public function __construct($array = array()) {
 		$this->convertArrayToVars($array);
@@ -41,10 +47,11 @@ class OpenGraphObject {
 
 	public function convertArrayToVars($array = array()) {
 		$allowedKeys = array_keys($this->allowedFields);
-		foreach($allowedKeys as $key) {
+		foreach ($allowedKeys as $key) {
 			if (isset($array[$key])) {
 				$this->allowedFields[$key] = $array[$key];
 				$propName = str_replace(":", "_", $key);
+				$propName = Inflector::variable($propName);
 				$this->$propName = $array[$key];
 			}
 		}
@@ -60,7 +67,7 @@ class OpenGraphObject {
 		$props = $reflect->getProperties(ReflectionProperty::IS_PUBLIC);
 		$ogProperties = array();
 		/*
-		foreach($props as $property) {
+		foreach ($props as $property) {
 			$name = $property->getName();
 			$value = $reflect->getProperty($name)->getValue($this);
 			if (!empty($value)) {
@@ -68,7 +75,7 @@ class OpenGraphObject {
 			}
 		}
 		*/
-		foreach($this->allowedFields as $key => $value) {
+		foreach ($this->allowedFields as $key => $value) {
 			if (!empty($value)) {
 				$ogProperties[$key] = $value;
 			}
@@ -81,18 +88,18 @@ class OpenGraphObject {
  * ensure all the properties of this type OpenGraph object are all non-empty
  */
 	public function validate() {
-		$this->emptyFields = array();
+		$this->_emptyFields = array();
 		$props = $this->getProperties();
-		foreach($props as $name=>$value) {
+		foreach ($props as $name => $value) {
 			if (empty($value)) {
-				$this->emptyFields[] = $name;
+				$this->_emptyFields[] = $name;
 			}
 		}
-		return (empty($this->emptyFields));
+		return (empty($this->_emptyFields));
 	}
 
 	public function getEmptyFields() {
-		return $this->emptyFields;
+		return $this->_emptyFields;
 	}
 
 }

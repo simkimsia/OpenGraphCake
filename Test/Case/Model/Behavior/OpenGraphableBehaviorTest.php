@@ -23,6 +23,7 @@ App::uses('OpenGraphObject', 'OpenGraphCake.Lib');
  * @package       OpenGraphCake.Test.Case.Model.Behavior
  */
 class OpenGraphableBehaviorTest extends CakeTestCase {
+
 /**
  * Fixtures associated with this test case
  *
@@ -77,10 +78,10 @@ class OpenGraphableBehaviorTest extends CakeTestCase {
 		// AND we expect the 4 basic fields of title, image, url, and type to match the same values in fixture
 		$this->assertEqual($openGraphObject->url, $this->stories[0]['url']);
 		$this->assertEqual($openGraphObject->image, $this->stories[0]['image']);
-		$this->assertEqual($openGraphObject->image_secure_url, $this->stories[0]['image']);
+		$this->assertEqual($openGraphObject->imageSecureUrl, $this->stories[0]['image']);
 		$this->assertEqual($openGraphObject->type, $this->stories[0]['og_type']);
 		$this->assertEqual($openGraphObject->title, $this->stories[0]['title']);
 		$this->assertEqual($openGraphObject->description, $this->stories[0]['description']);
-		$this->assertEqual($openGraphObject->release_date, $this->stories[0]['published']);
+		$this->assertEqual($openGraphObject->releaseDate, $this->stories[0]['published']);
 	}
 }

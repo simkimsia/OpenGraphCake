@@ -56,7 +56,7 @@ class OpenGraphableBehavior extends ModelBehavior {
 			)
 		);
 
-		foreach($settings['fields'] as $property => $databaseFieldName) {
+		foreach ($settings['fields'] as $property => $databaseFieldName) {
 			if (!is_string($property)) {
 				unset($settings['fields'][$property]);
 				$settings['fields'][$databaseFieldName] = $databaseFieldName;
@@ -81,7 +81,7 @@ class OpenGraphableBehavior extends ModelBehavior {
 			$suppliedData = $data;
 		}
 		$formattedData = array();
-		foreach($this->settings['fields'] as $property => $databaseFieldName) {
+		foreach ($this->settings['fields'] as $property => $databaseFieldName) {
 			$return = $this->_formatOneOGProperty($suppliedData, $property, $formattedData);
 		}
 
