@@ -109,17 +109,15 @@ class OpenGraphComponent extends Component {
 			$result[] = $singleTag;
 		}
 
+		if (!empty($options['globalFbAppId']) && !empty($this->globalFbAppId)) {
+			$singleTag = $this->_buildSingleTagArray('fb:app_id', $this->globalFbAppId);
+			$result[] = $singleTag;
+		}
+
 		if (!empty($options['viewVarName']) && is_string($options['viewVarName'])) {
 			$viewVarName = $options['viewVarName'];
 			$this->controller->set($viewVarName, $result);
 		}
-
-		if (!empty($options['globalFbAppId']) && !empty($this->globalFbAppId)) {
-			$singleTag = $this->_buildSingleTagArray('fb:app_id', $this->globalFbAppId);
-			$this->controller->set($options['viewVarName'], $singleTag);
-		}
-
-		// $this->controller->log($missingKeys);
 
 		return $result;
 	}
