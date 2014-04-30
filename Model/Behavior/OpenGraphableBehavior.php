@@ -154,7 +154,6 @@ class OpenGraphableBehavior extends ModelBehavior {
 		}
 
 		$card = $this->_createTwitterCardByType($type);
-		$model->log($card);
 
 		$card->convertArrayToVars($formattedData);
 
